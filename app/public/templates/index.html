@@ -1,67 +1,7 @@
 <head>
-    <style>
-      .container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100%;
-        flex-direction: column;
-      }
-
-      .mi-titulo {
-        font-size: 50px;
-        font-family: Rockwell, sans-serif;
-        font-weight: bold;
-        color: #ed3232;
-        text-align: center;
-      }
-
-      img {
-        width: 300px; /* Establece un ancho para la imagen */
-        margin-right: 40px;
-      }
-
-      .image-container {
-        display: flex;
-        flex-direction: row;
-        margin-top: 50px;
-      }
-
-      .botones-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-      }
-
-      .botones {
-        background-color: #ed3232;
-        border: none;
-        color: white;
-        padding: 15px 32px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin-top: 10px;
-        justify-content: center;
-        align-items: center;
-        width: 150px;
-        border-radius: 10px;
-      }
-
-      button:hover {
-        background-color: #fa7171;
-      }
-
-      #resultados {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-    }
-
-
-    </style>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/index.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/botones.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/resultados.css') }}">
 </head>
 
 {% extends "base.html" %}
