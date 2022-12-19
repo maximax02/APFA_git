@@ -11,15 +11,15 @@ from .forms.votar import VotarForm
 
 @public_bp.route('/')
 def index():
-    session.clear()
+    # session.clear()
+    if current_user.is_authenticated:
+        return redirect(url_for('public.micuenta'))
     return render_template('index.html')
 
 @public_bp.route('/apfa/micuenta')
 @login_required
 def micuenta():
-    # print('ESTOY EN: micuenta()')
 
-    # TODO: Este redirect es temporal
     return render_template('micuenta.html')
 
 @public_bp.route('/apfa/votar')
@@ -53,7 +53,6 @@ def voto_realizado(id_lista):
 #     return render_template('voto.html', listas=listas, form=form)
 
 @public_bp.route('/apfa/resultados')
-@login_required #TODO: No es necesario el login_required
 def resultados():
     listas = Lista.query.all()
     padron = Padron.query.all()
