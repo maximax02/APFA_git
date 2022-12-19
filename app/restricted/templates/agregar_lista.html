@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+<div>
+    <form action="" method="post" novalidate enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        <div>
+            {{ form.num_lista.label }}
+            {{ form.num_lista(size=64) }}<br>
+            {% for error in form.num_lista.errors %}
+            <span style="color: red;">{{ error }}</span>
+            {% endfor %}
+        </div>
+        <div>
+            {{ form.presidente.label }}
+            {{ form.presidente(size=64) }}<br>
+            {% for error in form.presidente.errors %}
+            <span style="color: red;">{{ error }}</span>
+            {% endfor %}
+        </div>
+        <div>
+            {{ form.vicepresidente.label }}
+            {{ form.vicepresidente(size=64) }}<br>
+            {% for error in form.vicepresidente.errors %}
+            <span style="color: red;">{{ error }}</span>
+            {% endfor %}
+        </div>
+        <div>
+            {{ form.imagen.label }}
+            {{ form.imagen }}<br>
+            {% for error in form.imagen.errors %}
+            <span style="color: red;">{{ error }}</span>
+            {% endfor %}
+        </div>
+
+
+        <div>
+            {{ form.submit() }}
+        </div>
+    </form>
+    <div>
+    <br>
+        <a href = "{{ url_for('public.micuenta') }}" >Volver</a>
+    </div>
+</div>
+{% endblock %}

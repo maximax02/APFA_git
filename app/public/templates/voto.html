@@ -1,0 +1,27 @@
+<head>
+    <style>
+        .flex-container {
+          display: flex;
+          flex-wrap: wrap;
+        }
+
+    </style>
+</head>
+{% extends "base.html" %}
+{% block content %}
+    <h1 class="bienvenido">Elije a quien votar</h1>
+
+    <div calss="flex-container">
+    {% for l in listas %}
+        <a href = "/apfa/votar/{{ l.id }}" >
+            <img src="{{ url_for('static', filename = 'images/' + l.imagen) }}" alt="{{ l.num_lista }}" style="width:300px;height:300px;">
+        </a>
+    {% endfor %}
+
+    </div>
+
+
+    <div>
+        <a href = "{{ url_for('public.micuenta') }}" >Volver</a>
+    </div>
+{% endblock %}

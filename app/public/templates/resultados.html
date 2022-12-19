@@ -1,0 +1,32 @@
+<head>
+    <style>
+         table, th, td {
+            border-color: #848484;
+            border-style: groove;
+            border-collapse: collapse;
+         }
+    </style>
+</head>
+
+{% extends "base.html" %}
+{% block content %}
+    <h1 class="bienvenido">Resultados</h1>
+    <div>
+        <p>Cantidad de votantes: {{ datos.cant_votantes }}%</p>
+        <p>Cantidad en el padrón: {{ datos.padron }}</p>
+        <table>
+            <tr>
+                <th>Lista</th>
+                <th>Votos</th>
+            </tr>
+            {% for l in datos.listas %}
+            <tr>
+                <td>{{ l.num_lista }}</td>
+                <td>{{ l.cantidad_votos }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <br></br>
+        <a href = "{{ url_for('public.micuenta') }}" >Volver</a>
+    </div>
+{% endblock %}

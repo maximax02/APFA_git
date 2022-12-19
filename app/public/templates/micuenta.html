@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1 class="bienvenido">Bienvenido/a {{ current_user.nombre }}</h1>
+    <div>
+
+        <ul>
+          {% if not current_user.habilitado %}
+            <li><div>Favor revisa tu correo y verificalo para poder votar.</div></li>
+            <p>¿No te llegó el enlace? Haz <a href = "{{ url_for('auth.enviar_mail') }}" >click aquí</a> para mandarlo de nuevo.</p>
+            <br>
+          {% elif current_user.ya_voto %}
+            <li><div>Ya votó</div></li>
+          {% else %}
+            <li><a href ="{{ url_for('public.votar') }}" >Votar</a></li>
+          {% endif %}
+
+          <li><a href = "{{ url_for('public.resultados') }}" >Resultados</a></li>
+          {% if current_user.is_admin %}
+            <br>
+            <li><a href = "{{ url_for('restricted.agregar_lista') }}" >Ingresar listas</a></li>
+          {% endif %}
+          <br>
+          <li><a href="{{ url_for('auth.logout') }}">Cerrar sesión</a></li>
+        </ul>
+    </div>
+{% endblock %}
