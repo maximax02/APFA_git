@@ -1,0 +1,52 @@
+/* Estilos para el contenedor del checkbox */
+.checkbox-container {
+  display: inline-block;
+  position: relative;
+  margin: 5px;
+  cursor: pointer;
+  margin-top: 30px;
+}
+
+/* Estilos para el checkbox */
+.checkbox-container input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Estilos para la etiqueta "fake" del checkbox */
+.checkbox-container .checkbox-fake {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  background-color: #fff;
+}
+
+/* Estilos para el check marcado */
+.checkbox-container input[type="checkbox"]:checked ~ .checkbox-fake::before {
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: 7px;
+  width: 6px;
+  height: 10px;
+  border: solid #000;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+/* Estilos para el checkbox cuando está enfocado */
+.checkbox-container input[type="checkbox"]:focus ~ .checkbox-fake {
+  border-color: #ed3232;
+  box-shadow: 0 0 2px 1px #e1b3b3;
+}
+
+.checkbox-container::after {
+  content: "Recuerdame";
+  margin-left: 30px;
+  font-family: sans-serif;
+}
