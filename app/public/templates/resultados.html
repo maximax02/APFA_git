@@ -1,77 +1,8 @@
 <head>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/botones.css') }}">
-    <style>
-         table {
-		  width: 50%; /* Establece el ancho de la tabla al 50% del ancho disponible */
-		  margin: 0 auto; /* Centra la tabla en la página */
-		  border: 1px solid #333; /* Añade un borde de 1px de ancho y color gris oscuro a la tabla */
-		  background-color: #ed3232; /* Establece el color de fondo de la tabla como gris claro */
-		  font-size: 14px; /* Establece el tamaño de la fuente de la tabla en 14px */
-		  font-family: Arial, sans-serif; /* Establece la fuente de la tabla como Arial o una fuente similar */
-		  box-shadow: 8px 8px 5px rgba(0, 0, 0, 0.1);
-		}
-
-		th, td {
-		  width: 25%; /* Establece el ancho de las celdas al 25% del ancho de la tabla */
-		  text-align: center; /* Alinea el texto de las celdas al centro */
-		  border: 1px solid #333; /* Añade un borde de 1px de ancho y color gris oscuro a las celdas */
-		  background-color: #e1b3b3; /* Establece el color de fondo de las celdas como blanco */
-		}
-
-		.mi-titulo {
-          font-size: 50px;
-          font-family: Rockwell, sans-serif;
-          font-weight: bold;
-          color: #ed3232;
-          text-align: center;
-          text-shadow: 1px 1px 2px #181111;
-
-        }
-
-        .contenido1 {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          height: 100%;
-
-        }
-
-        .contenido2 {
-          display: flex;
-          flex-direction:column;
-          background-color: #e1b3b3;
-          border-radius: 20px;
-          box-sizing: border-box;
-          height: auto;
-          margin: 0 auto;
-          width: 320px;
-          box-shadow: 8px 8px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        .datos {
-          display: flex;
-          flex-direction:column;
-          margin: 0 auto;
-
-        }
-
-        p {
-          color: #181111;
-          font-size: 18px;
-          font-family: Rockwell, sans-serif;
-          text-align: center;
-          margin: 20px 0;
-        }
-
-        .general {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          padding: 30px;
-        }
-
-
-    </style>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/resultados_tabla.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/resultados_titulo.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/resultados_datos.css') }}">
 </head>
 
 {% extends "base.html" %}
@@ -97,9 +28,6 @@
                     <p>Cantidad en el padrón: <strong>{{ datos.padron }}</strong></p>
                 </div>
             </div>
-
-
-            <!-- <a href = "{{ url_for('public.index') }}" >Volver</a> -->
         </div>
 
         <form class="general">

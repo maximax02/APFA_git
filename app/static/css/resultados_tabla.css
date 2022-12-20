@@ -1,0 +1,16 @@
+table {
+  width: 50%; 
+  margin: 0 auto;
+  border: 1px solid #333;
+  background-color: #ed3232;
+  font-size: 14px; 
+  font-family: Arial, sans-serif; 
+  box-shadow: 8px 8px 5px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+  width: 25%; 
+  text-align: center;
+  border: 1px solid #333;
+  background-color: #e1b3b3; 
+}
