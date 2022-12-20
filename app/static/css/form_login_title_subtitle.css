@@ -13,10 +13,11 @@ body {
   height: 550px;
   padding: 20px;
   width: 320px;
+  box-shadow: 8px 8px 5px rgba(0, 0, 0, 0.1);
 }
 
 .title {
-  color: #eee;
+  color: #ed3232;
   font-family: sans-serif;
   font-size: 36px;
   font-weight: 600;
@@ -24,7 +25,7 @@ body {
 }
 
 .subtitle {
-  color: #eee;
+  color: #ed3232;
   font-family: sans-serif;
   font-size: 16px;
   font-weight: 600;

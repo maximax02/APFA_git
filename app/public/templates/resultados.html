@@ -1,19 +1,43 @@
 <head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/botones.css') }}">
     <style>
-         table, th, td {
-            border-color: #848484;
-            border-style: groove;
-            border-collapse: collapse;
-         }
+         table {
+		  width: 50%; /* Establece el ancho de la tabla al 50% del ancho disponible */
+		  margin: 0 auto; /* Centra la tabla en la página */
+		  border: 1px solid #333; /* Añade un borde de 1px de ancho y color gris oscuro a la tabla */
+		  background-color: #eee; /* Establece el color de fondo de la tabla como gris claro */
+		  font-size: 14px; /* Establece el tamaño de la fuente de la tabla en 14px */
+		  font-family: Arial, sans-serif; /* Establece la fuente de la tabla como Arial o una fuente similar */
+		}
+
+		th, td {
+		  width: 25%; /* Establece el ancho de las celdas al 25% del ancho de la tabla */
+		  text-align: center; /* Alinea el texto de las celdas al centro */
+		  border: 1px solid #333; /* Añade un borde de 1px de ancho y color gris oscuro a las celdas */
+		  background-color: #fff; /* Establece el color de fondo de las celdas como blanco */
+		}
+
+		.mi-titulo {
+          font-size: 50px;
+          font-family: Rockwell, sans-serif;
+          font-weight: bold;
+          color: #ed3232;
+          text-align: center;
+        }
+
+        .contenido {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100%;
+        }
     </style>
 </head>
 
 {% extends "base.html" %}
 {% block content %}
-    <h1 class="bienvenido">Resultados</h1>
-    <div>
-        <p>Cantidad de votantes: {{ datos.cant_votantes }}%</p>
-        <p>Cantidad en el padrón: {{ datos.padron }}</p>
+    <h1 class="mi-titulo">Resultados</h1>
+    <div class="contenido">
         <table>
             <tr>
                 <th>Lista</th>
@@ -21,12 +45,21 @@
             </tr>
             {% for l in datos.listas %}
             <tr>
-                <td>{{ l.num_lista }}</td>
+                <td><img src="{{ url_for('static', filename = 'images/' + l.imagen) }}" alt="{{ l.num_lista }}" style="width:100px;height:100px;"></td>
                 <td>{{ l.cantidad_votos }}</td>
             </tr>
             {% endfor %}
         </table>
-        <br></br>
-        <a href = "{{ url_for('public.index') }}" >Volver</a>
+        <div class ="contenido" style="flex-direction:column;margin: 0 auto;">
+            <p>Cantidad de votantes: {{ datos.cant_votantes }}%</p>
+            <p>Cantidad en el padrón: {{ datos.padron }}</p>
+        </div>
+
+
+        <!-- <a href = "{{ url_for('public.index') }}" >Volver</a> -->
     </div>
+
+    <form>
+        <button class="botones" formaction="{{ url_for('public.index') }}">Volver</button>
+    </form>
 {% endblock %}

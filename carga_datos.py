@@ -43,7 +43,7 @@ with app.app_context():
 
 
     # Creo listas
-    l1 = Lista(presidente="Anulado", vice="Anulado", num_lista="0", imagen="negro.jpg")
+    l1 = Lista(presidente="Anulado", vice="Anulado", num_lista="0", imagen="anulado.jpg")
     l2 = Lista(presidente="Blanco", vice="Blanco", num_lista="1", imagen="blanco.jpg")
     l3 = Lista(presidente="Erica Zorrilla", vice="Consuelo Escudero", num_lista="150", imagen="150.jpg")
     l4 = Lista(presidente="Manuel Agustín Ledesma", vice="Silvia Stipcich ", num_lista="300", imagen="300.jpg")
