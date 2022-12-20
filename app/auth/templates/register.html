@@ -1,5 +1,56 @@
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/form_login_title_subtitle.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/login_input.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/submit_buton.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/botones.css') }}">
+</head>
 {% extends "base.html" %}
 {% block content %}
+
+<div class="form" style="height:670px;">
+    <div class="title">Bienvenido</div>
+    <div class="subtitle">Creemos tu cuenta</div>
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <div class="input-container ic1">
+            {{ form.num_socio }}
+            <div class="cut" style="width:65px"></div>
+            <label for="num_socio" class="placeholder">Nº Socio</label>
+        </div>
+        <div class="input-container ic2">
+            {{ form.nombre_usuario }}
+            <div class="cut" style="width:105px"></div>
+            <label for="nombre_usuario" class="placeholder">Nombre usuario</label>
+        </div>
+        <div class="input-container ic2">
+            {{ form.email }}
+            <div class="cut" style="width:50px"></div>
+            <label for="email" class="placeholder">Email</label>
+        </div>
+        <div class="input-container ic2">
+            {{ form.password }}
+            <div class="cut" style="width:72px"></div>
+            <label for="password" class="placeholder">Password</label>
+        </div>
+        <div class="input-container ic2">
+            {{ form.password2 }}
+            <div class="cut" style="width:110px"></div>
+            <label for="password2" class="placeholder">Repita password</label>
+        </div>
+        {{ form.submit() }}
+    </form>
+
+    <form>
+        <button class="botones" formaction="{{ url_for('public.index') }}" style="width:100%;margin-top:15px;">Volver</button>
+    </form>
+
+
+</div>
+
+
+
+
+<!--
 <div>
     <form action="" method="post" novalidate>
         {{ form.hidden_tag() }}
@@ -48,4 +99,6 @@
         <a href = "{{ url_for('public.index') }}" >Volver</a>
     </div>
 </div>
+
+-->
 {% endblock %}

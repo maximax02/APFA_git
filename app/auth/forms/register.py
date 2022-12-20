@@ -3,9 +3,9 @@ from wtforms import StringField, PasswordField, BooleanField, SubmitField
 from wtforms.validators import DataRequired, ValidationError, Email, EqualTo
 
 class RegisterForm(FlaskForm):
-    num_socio = StringField('Numero de socio', validators=[DataRequired()])
-    nombre_usuario = StringField('Nombre de usuario', validators=[DataRequired()])
-    email = StringField('Email', validators=[DataRequired(), Email()])
-    password = PasswordField('Contraseña', validators=[DataRequired()])
-    password2 = PasswordField('Repita contraseña', validators=[DataRequired(), EqualTo('password', 'Las contraseñas no coinciden')])
-    submit = SubmitField('Registro')
+    num_socio = StringField('Numero de socio', validators=[DataRequired()], render_kw={'class':'input', 'placeholder':' '})
+    nombre_usuario = StringField('Nombre de usuario', validators=[DataRequired()], render_kw={'class':'input', 'placeholder':' '})
+    email = StringField('Email', validators=[DataRequired(), Email()], render_kw={'class':'input', 'placeholder':' '})
+    password = PasswordField('Contraseña', validators=[DataRequired()], render_kw={'class':'input', 'placeholder':' '})
+    password2 = PasswordField('Repita contraseña', validators=[DataRequired(), EqualTo('password', 'Las contraseñas no coinciden')], render_kw={'class':'input', 'placeholder':' '})
+    submit = SubmitField('Registro', render_kw={'class':'submit'})

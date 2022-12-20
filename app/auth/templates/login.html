@@ -13,35 +13,37 @@
 <div class="form">
     <div class="title">Bienvenido</div>
     <div class="subtitle">Ingrese por email o número de socio</div>
-    <div class="input-container ic1" style="margin-top:15px;">
-        {{ form.opcion }}
-    </div>
-        <div id="divEmail" style="display:block">
-            <div class="input-container ic2">
-                {{ form.email }}
-                <div class="cut cut-email"></div>
-                <label for="email" class="placeholder">Email</label>
-            </div>
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <div class="input-container ic1" style="margin-top:15px;">
+            {{ form.opcion }}
         </div>
-        <div id="divSocio" style="display:none">
-            <div class="input-container ic2">
-                {{ form.num_socio }}
-                <div class="cut cut-socio"></div>
-                <label for="num_socio" class="placeholder">Nº Socio</label>
+            <div id="divEmail" style="display:block">
+                <div class="input-container ic2">
+                    {{ form.email }}
+                    <div class="cut" style="width:50px"></div>
+                    <label for="email" class="placeholder">Email</label>
+                </div>
             </div>
+            <div id="divSocio" style="display:none">
+                <div class="input-container ic2">
+                    {{ form.num_socio }}
+                    <div class="cut" style="width:65px"></div>
+                    <label for="num_socio" class="placeholder">Nº Socio</label>
+                </div>
+            </div>
+        <div class="input-container ic2">
+            {{ form.password }}
+            <div class="cut" style="width:72px"></div>
+            <label for="password" class="placeholder">Password</label>
         </div>
-    <div class="input-container ic2">
-        {{ form.password }}
-        <div class="cut cut-password"></div>
-        <label for="password" class="placeholder">Contraseña</label>
-    </div>
 
-    <label class="checkbox-container">
-		  {{ form.remember_me() }}
-		  <span class="checkbox-fake"></span>
-    </label>
-    {{ form.submit() }}
-
+        <label class="checkbox-container">
+              {{ form.remember_me() }}
+              <span class="checkbox-fake"></span>
+        </label>
+        {{ form.submit() }}
+    </form>
     <form>
         <button class="botones" formaction="{{ url_for('public.index') }}" style="width:100%;margin-top:15px;">Volver</button>
     </form>
