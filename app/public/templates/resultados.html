@@ -5,16 +5,17 @@
 		  width: 50%; /* Establece el ancho de la tabla al 50% del ancho disponible */
 		  margin: 0 auto; /* Centra la tabla en la página */
 		  border: 1px solid #333; /* Añade un borde de 1px de ancho y color gris oscuro a la tabla */
-		  background-color: #eee; /* Establece el color de fondo de la tabla como gris claro */
+		  background-color: #ed3232; /* Establece el color de fondo de la tabla como gris claro */
 		  font-size: 14px; /* Establece el tamaño de la fuente de la tabla en 14px */
 		  font-family: Arial, sans-serif; /* Establece la fuente de la tabla como Arial o una fuente similar */
+		  box-shadow: 8px 8px 5px rgba(0, 0, 0, 0.1);
 		}
 
 		th, td {
 		  width: 25%; /* Establece el ancho de las celdas al 25% del ancho de la tabla */
 		  text-align: center; /* Alinea el texto de las celdas al centro */
 		  border: 1px solid #333; /* Añade un borde de 1px de ancho y color gris oscuro a las celdas */
-		  background-color: #fff; /* Establece el color de fondo de las celdas como blanco */
+		  background-color: #e1b3b3; /* Establece el color de fondo de las celdas como blanco */
 		}
 
 		.mi-titulo {
@@ -23,43 +24,86 @@
           font-weight: bold;
           color: #ed3232;
           text-align: center;
+          text-shadow: 1px 1px 2px #181111;
+
         }
 
-        .contenido {
+        .contenido1 {
           display: flex;
           justify-content: center;
           align-items: center;
           height: 100%;
+
         }
+
+        .contenido2 {
+          display: flex;
+          flex-direction:column;
+          background-color: #e1b3b3;
+          border-radius: 20px;
+          box-sizing: border-box;
+          height: auto;
+          margin: 0 auto;
+          width: 320px;
+          box-shadow: 8px 8px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .datos {
+          display: flex;
+          flex-direction:column;
+          margin: 0 auto;
+
+        }
+
+        p {
+          color: #181111;
+          font-size: 18px;
+          font-family: Rockwell, sans-serif;
+          text-align: center;
+          margin: 20px 0;
+        }
+
+        .general {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 30px;
+        }
+
+
     </style>
 </head>
 
 {% extends "base.html" %}
 {% block content %}
     <h1 class="mi-titulo">Resultados</h1>
-    <div class="contenido">
-        <table>
-            <tr>
-                <th>Lista</th>
-                <th>Votos</th>
-            </tr>
-            {% for l in datos.listas %}
-            <tr>
-                <td><img src="{{ url_for('static', filename = 'images/' + l.imagen) }}" alt="{{ l.num_lista }}" style="width:100px;height:100px;"></td>
-                <td>{{ l.cantidad_votos }}</td>
-            </tr>
-            {% endfor %}
-        </table>
-        <div class ="contenido" style="flex-direction:column;margin: 0 auto;">
-            <p>Cantidad de votantes: {{ datos.cant_votantes }}%</p>
-            <p>Cantidad en el padrón: {{ datos.padron }}</p>
+
+        <div class="contenido1">
+            <table>
+                <tr>
+                    <th>Lista</th>
+                    <th>Votos</th>
+                </tr>
+                {% for l in datos.listas %}
+                <tr>
+                    <td><img src="{{ url_for('static', filename = 'images/' + l.imagen) }}" alt="{{ l.num_lista }}" style="width:100px;height:100px;margin:5px;"></td>
+                    <td style="font-size:40px;">{{ l.cantidad_votos }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+            <div class ="contenido2">
+                <div class="datos">
+                    <p>Cantidad de votantes: <strong>{{ datos.cant_votantes }}% </strong></p>
+                    <p>Cantidad en el padrón: <strong>{{ datos.padron }}</strong></p>
+                </div>
+            </div>
+
+
+            <!-- <a href = "{{ url_for('public.index') }}" >Volver</a> -->
         </div>
 
+        <form class="general">
+            <button class="botones" formaction="{{ url_for('public.index') }}">Volver</button>
+        </form>
 
-        <!-- <a href = "{{ url_for('public.index') }}" >Volver</a> -->
-    </div>
-
-    <form>
-        <button class="botones" formaction="{{ url_for('public.index') }}">Volver</button>
-    </form>
 {% endblock %}
