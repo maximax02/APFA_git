@@ -31,10 +31,13 @@ def votar():
 @public_bp.route('/apfa/votar/<int:id_lista>')
 @login_required
 def voto_realizado(id_lista):
+    if current_user.ya_voto:
+        flash('Ya votaste, no te hagas el loco')
+        return redirect(url_for('public.micuenta'))
     lista = Lista.query.get(id_lista)
     print(f'VOTANDO A: {lista.num_lista}')
     lista.sumar_voto()
-    # current_user.confirmar_voto()
+    current_user.confirmar_voto()
     flash('Voto realizado')
     return redirect(url_for('public.micuenta'))
 
@@ -57,8 +60,13 @@ def resultados():
     listas = Lista.query.all()
     padron = Padron.query.all()
     users = User.query.all()
-    cant_votantes = '{:.2f}'.format(((len(users)*100)/len(padron)))
-    print(f'CANT VOTANTES: {cant_votantes}')
+    users_habilitados = User.query.filter_by(habilitado=True).all()
+    print(users_habilitados)
+    users_ya_votaron = len(list(filter(lambda user: user.ya_voto, users_habilitados)))
+    porcentaje_votos = '{:.2f}'.format( (users_ya_votaron*100)/len(users_habilitados) )
+    porcentaje_habilitados = '{:.2f}'.format(((len(users)*100)/len(padron)))
 
-    datos = {'cant_votantes': cant_votantes, 'padron': len(padron), 'listas': listas}
+    #TODO: Mostrar ganador parcial.
+
+    datos = {'porcentaje_habilitados': porcentaje_habilitados, 'porcentaje_votos': porcentaje_votos, 'padron': len(padron), 'users_habilitados': len(users_habilitados), 'listas': listas}
     return render_template('resultados.html', datos=datos)
