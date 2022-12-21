@@ -2,7 +2,7 @@
 
 
 - vistas:
+    - web: mi cuenta (pronto, falta separa el css)
 	- web: agregar listas
-	- web: mi cuenta
 	- web: votar
 	- mensaje del correo de verificación

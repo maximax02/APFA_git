@@ -1,30 +1,73 @@
 <head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/index.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/botones.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/resultados.css') }}">
+
+    <style>
+        ul {
+          list-style-type: none;
+          padding: 10px;
+          margin: 0 auto;
+          color: blue;
+        }
+
+        li {
+          display: flex;
+          justify-content: center;
+        }
+
+
+        .list-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .texto {
+          font-family: Rockwell, sans-serif;
+          color: #ed3232;
+          text-align: center;
+        }
+
+        .click-aqui {
+            color: #ed3232;
+            font-weight: bold;
+        }
+
+
+
+
+    </style>
 </head>
 
 {% extends "base.html" %}
 {% block content %}
-    <h1 class="bienvenido">Bienvenido/a {{ current_user.nombre }}</h1>
-    <div>
+    <h1 class="mi-titulo">Bienvenido {{ current_user.nombre }}</h1>
+    <div class="list-container">
 
         <ul>
           {% if not current_user.habilitado %}
-            <li><div>Favor revisa tu correo y verificalo para poder votar.</div></li>
-            <p>¿No te llegó el enlace? Haz <a href = "{{ url_for('auth.enviar_mail') }}" >click aquí</a> para mandarlo de nuevo.</p>
-            <br>
+            <li><div><p class="texto">Favor revisa tu correo y verificalo para poder votar.</p></div></li>
+            <p class="texto">¿No te llegó el enlace? Haz <a class="click-aqui" href = "{{ url_for('auth.enviar_mail') }}">click aqui</a> para mandarlo de nuevo.</p>
           {% elif current_user.ya_voto %}
-            <li><div>Ya votó</div></li>
+            <li><form>
+                <button disabled class="botones" style="background-color: #fa7171;" formaction="{{ url_for('public.votar') }}">Ya votó</button>
+            </form></li>
           {% else %}
-            <li><a href ="{{ url_for('public.votar') }}" >Votar</a></li>
+            <li><form>
+                <button class="botones" formaction="{{ url_for('public.votar') }}">Votar</button>
+            </form></li>
           {% endif %}
 
           {% if current_user.is_admin %}
-            <br>
-            <li><a href = "{{ url_for('restricted.agregar_lista') }}" >Ingresar listas</a></li>
+            <li><form>
+                <button class="botones" formaction="{{ url_for('restricted.agregar_lista') }}">Ingresar listas</button>
+            </form></li>
           {% endif %}
-          <br>
-          <li><a href="{{ url_for('auth.logout') }}">Cerrar sesión</a></li>
+            <li>
+            <form>
+                <button class="botones" formaction="{{ url_for('auth.logout') }}">Cerrar sesión</button>
+            </form>
+            </li>
         </ul>
     </div>
 
