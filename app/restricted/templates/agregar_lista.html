@@ -1,45 +1,95 @@
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/botones.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/submit_buton.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/login_input.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/agregar_lista.css') }}">
+</head>
+
 {% extends "base.html" %}
 {% block content %}
+
+
 <div>
-    <form action="" method="post" novalidate enctype="multipart/form-data">
+    <form class ="form-agregar-listas" action="" method="post" novalidate enctype="multipart/form-data">
         {{ form.hidden_tag() }}
-        <div>
-            {{ form.num_lista.label }}
-            {{ form.num_lista(size=64) }}<br>
-            {% for error in form.num_lista.errors %}
-            <span style="color: red;">{{ error }}</span>
-            {% endfor %}
-        </div>
-        <div>
-            {{ form.presidente.label }}
-            {{ form.presidente(size=64) }}<br>
-            {% for error in form.presidente.errors %}
-            <span style="color: red;">{{ error }}</span>
-            {% endfor %}
-        </div>
-        <div>
-            {{ form.vicepresidente.label }}
-            {{ form.vicepresidente(size=64) }}<br>
-            {% for error in form.vicepresidente.errors %}
-            <span style="color: red;">{{ error }}</span>
-            {% endfor %}
-        </div>
-        <div>
-            {{ form.imagen.label }}
-            {{ form.imagen }}<br>
-            {% for error in form.imagen.errors %}
-            <span style="color: red;">{{ error }}</span>
-            {% endfor %}
-        </div>
+        <table>
+                <tr>
+                    <td><label for="num_lista">Número de lista: </label></td>
+                    <td>{{ form.num_lista }}</td>
+                </tr>
+                <tr>
+                    <td><label for="presidente">Presidente: </label></td>
+                    <td>{{ form.presidente }}</td>
+                </tr>
+                <tr>
+                    <td><label for="vicepresidente">Vice-Presidente: </label></td>
+                    <td>{{ form.vicepresidente }}</td>
+                </tr>
+                <tr>
+                    <td><label for="imagen">Imagen: </label></td>
+                    <td>{{ form.imagen }}</td>
+                </tr>
+        </table>
 
 
-        <div>
+
+
             {{ form.submit() }}
-        </div>
+
     </form>
-    <div>
-    <br>
-        <a href = "{{ url_for('public.micuenta') }}" >Volver</a>
-    </div>
+
+    <form class="general">
+            <button class="botones" formaction="{{ url_for('public.index') }}">Volver</button>
+    </form>
 </div>
+
+
+
+
+
+
+
+
+<!--<div>-->
+<!--    <form action="" method="post" novalidate enctype="multipart/form-data">-->
+<!--        {{ form.hidden_tag() }}-->
+<!--        <div>-->
+<!--            {{ form.num_lista.label }}-->
+<!--            {{ form.num_lista(size=64) }}<br>-->
+<!--            {% for error in form.num_lista.errors %}-->
+<!--            <span style="color: red;">{{ error }}</span>-->
+<!--            {% endfor %}-->
+<!--        </div>-->
+<!--        <div>-->
+<!--            {{ form.presidente.label }}-->
+<!--            {{ form.presidente(size=64) }}<br>-->
+<!--            {% for error in form.presidente.errors %}-->
+<!--            <span style="color: red;">{{ error }}</span>-->
+<!--            {% endfor %}-->
+<!--        </div>-->
+<!--        <div>-->
+<!--            {{ form.vicepresidente.label }}-->
+<!--            {{ form.vicepresidente(size=64) }}<br>-->
+<!--            {% for error in form.vicepresidente.errors %}-->
+<!--            <span style="color: red;">{{ error }}</span>-->
+<!--            {% endfor %}-->
+<!--        </div>-->
+<!--        <div>-->
+<!--            {{ form.imagen.label }}-->
+<!--            {{ form.imagen }}<br>-->
+<!--            {% for error in form.imagen.errors %}-->
+<!--            <span style="color: red;">{{ error }}</span>-->
+<!--            {% endfor %}-->
+<!--        </div>-->
+
+
+<!--        <div>-->
+<!--            {{ form.submit() }}-->
+<!--        </div>-->
+<!--    </form>-->
+<!--    <div>-->
+<!--    <br>-->
+<!--        <a href = "{{ url_for('public.micuenta') }}" >Volver</a>-->
+<!--    </div>-->
+<!--</div>-->
 {% endblock %}

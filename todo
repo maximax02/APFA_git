@@ -1,8 +1,8 @@
 - Cuando accedo a una pagina de permisos admin sin estar logueado me lleva mal al login
-
+- Arreglar los mensajes flash
 
 - vistas:
-    - web: mi cuenta (pronto, falta separa el css)
-	- web: agregar listas
+    - web: mi cuenta (pronto)
+	- web: agregar listas (pronto)
 	- web: votar
 	- mensaje del correo de verificación
