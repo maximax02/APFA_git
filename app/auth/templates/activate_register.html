@@ -1,4 +1,41 @@
-<p>Bienvenido! Gracias por registrarte. Por favor siga este enlace para confirmar su email:</p>
-<p><a href="{{ confirm_url }}">{{ confirm_url }}</a></p>
-<br>
-<p>Saludos!</p>
+<head>
+    <style>
+
+        .general {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 30px;
+          flex-direction: column;
+        }
+
+
+        .title {
+          color: #ed3232;
+          font-family: sans-serif;
+          font-size: 36px;
+          font-weight: 600;
+          margin-top: 15px;
+          text-align: center;
+        }
+
+        p {
+          color: #181111;
+          font-size: 18px;
+          font-family: Rockwell, sans-serif;
+          text-align: center;
+          margin: 20px 0;
+        }
+
+    </style>
+</head>
+<div>
+    <h1 class="title">¡Bienvenido a APFA!</h1>
+<!--    <center>-->
+        <img src="https://apfa.org.ar/moodle/pluginfile.php/1/core_admin/logocompact/300x300/1646588326/Logo_APFA.png" alt="Logo APFA" style="display: block;margin: 0 auto;">
+<!--    </center>-->
+    <p>Gracias por registrarte. Por favor siga este enlace para confirmar su email:</p>
+    <p><a href="{{ confirm_url }}">{{ confirm_url }}</a></p>
+    <br>
+    <p>Saludos!</p>
+</div>
