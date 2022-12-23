@@ -26,28 +26,17 @@ def micuenta():
 @login_required
 def votar():
     listas = Lista.query.all()
-    datosModal = {}
-    d2 = []
-    datosModal[f'modal'] = []
-    datosModal[f'imagen'] = []
-    # datosJS = {}
+    datosImagen = []
+    datosModal = []
     for l in listas:
-        # datosModal.append()
-        datosModal[f'modal'].append(f'modal{l.id}')
-        datosModal[f'modal'].append(f'cancelar-btn{l.id}')
-        datosModal[f'modal'].append(f'continuar-btn{l.id}')
+        datosImagen.append(f'imagen{l.id}')
+        datosImagen.append(f'/apfa/votar/{l.id}')
+        datosImagen.append(f'modal{l.id}')
 
-        datosModal[f'imagen'].append(f'imagen{l.id}')
-        datosModal[f'imagen'].append(f'/apfa/votar/{l.id}')
-        datosModal[f'imagen'].append(f'modal{l.id}')
-
-    for l in listas:
-        modal = Modal(f'modal{l.id}', f'imagen{l.id}', f'cancelar-btn{l.id}', f'continuar-btn{l.id}', f'/apfa/votar/{l.id}')
-        d2.append(modal)
-
-    print(f'DATOS_MODAL: {datosModal}')
-    # print(f'DATOS IMAGEN{datos["imagen"]}')
-    return render_template('voto.html', listas=listas, datosModal=datosModal, largo=len(listas), d2=d2)
+        modal = Modal(f'modal{l.id}', f'cancelar-btn{l.id}', f'continuar-btn{l.id}', f'/apfa/votar/{l.id}')
+        datosModal.append(modal)
+    print(f'DATOS_MODAL: {datosImagen}')
+    return render_template('voto.html', listas=listas, datosImagen=datosImagen, largo=len(listas), datosModal=datosModal)
 
 @public_bp.route('/apfa/votar/<int:id_lista>')
 @login_required

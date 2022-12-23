@@ -29,9 +29,8 @@ class Lista(db.Model):
         db.session.commit()
 
 class Modal():
-    def __init__(self, nombre, imagen, cancelBtn, continueBtn, link):
+    def __init__(self, nombre, cancelBtn, continueBtn, link):
         self.nombre = nombre
-        self.imagen = imagen
         self.cancelBtn = cancelBtn
         self.continueBtn = continueBtn
         self.link = link

@@ -145,21 +145,20 @@ button:hover {
 {% block content %}
     <h1 class="mi-titulo">Elije a quien votar</h1>
     <div calss="flex-container">
-<!--        {% set contador = 1 %}-->
         {% for i in range(0, largo) %}
             {% set cont = i * 3 %}
-                <img src="{{ url_for('static', filename = 'images/' + listas[i].imagen) }}" alt="{{ listas[i].num_lista }}" id="{{ datosModal.imagen[cont] }}" data-value="{{ datosModal.imagen[cont + 1] }}" class="imagen-lista" data-modal="{{ datosModal.imagen[cont + 2] }}">
+                <img src="{{ url_for('static', filename = 'images/' + listas[i].imagen) }}" alt="{{ listas[i].num_lista }}" id="{{ datosImagen[cont] }}" data-value="{{ datosImagen[cont + 1] }}" class="imagen-lista" data-modal="{{ datosImagen[cont + 2] }}">
         {% endfor %}
     </div>
 
 
-        {% for d in d2 %}
-        <div class="modal" id="{{ d.nombre }}">
+        {% for modal in datosModal %}
+        <div class="modal" id="{{ modal.nombre }}">
           <div class="modal-content">
                 <h1>¿Quieres continuar?</h1>
                 <div class="clearfix">
-                  <button id="{{ d.cancelBtn }}" class="cancelbtn" data-modal="{{ d.nombre }}">Cancelar</button>
-                  <button id="{{ d.continueBtn }}" class="continuebtn" data-link="{{ d.link }}" data-modal="{{ d.nombre }}">Continuar</button>
+                  <button id="{{ modal.cancelBtn }}" class="cancelbtn" data-modal="{{ modal.nombre }}">Cancelar</button>
+                  <button id="{{ modal.continueBtn }}" class="continuebtn" data-link="{{ modal.link }}" data-modal="{{ modal.nombre }}">Continuar</button>
                 </div>
           </div>
         </div>
