@@ -2,7 +2,7 @@ from . import public_bp
 from flask import render_template, session, url_for, redirect, flash
 from flask_login import login_required, current_user
 
-from app.public.models import Lista, Padron
+from app.public.models import Lista, Padron, Modal
 from app.auth.models import User
 from .forms.votar import VotarForm
 
@@ -26,7 +26,28 @@ def micuenta():
 @login_required
 def votar():
     listas = Lista.query.all()
-    return render_template('voto.html', listas=listas)
+    datosModal = {}
+    d2 = []
+    datosModal[f'modal'] = []
+    datosModal[f'imagen'] = []
+    # datosJS = {}
+    for l in listas:
+        # datosModal.append()
+        datosModal[f'modal'].append(f'modal{l.id}')
+        datosModal[f'modal'].append(f'cancelar-btn{l.id}')
+        datosModal[f'modal'].append(f'continuar-btn{l.id}')
+
+        datosModal[f'imagen'].append(f'imagen{l.id}')
+        datosModal[f'imagen'].append(f'/apfa/votar/{l.id}')
+        datosModal[f'imagen'].append(f'modal{l.id}')
+
+    for l in listas:
+        modal = Modal(f'modal{l.id}', f'imagen{l.id}', f'cancelar-btn{l.id}', f'continuar-btn{l.id}', f'/apfa/votar/{l.id}')
+        d2.append(modal)
+
+    print(f'DATOS_MODAL: {datosModal}')
+    # print(f'DATOS IMAGEN{datos["imagen"]}')
+    return render_template('voto.html', listas=listas, datosModal=datosModal, largo=len(listas), d2=d2)
 
 @public_bp.route('/apfa/votar/<int:id_lista>')
 @login_required
@@ -37,7 +58,7 @@ def voto_realizado(id_lista):
     lista = Lista.query.get(id_lista)
     print(f'VOTANDO A: {lista.num_lista}')
     lista.sumar_voto()
-    current_user.confirmar_voto()
+    # current_user.confirmar_voto()
     flash('Voto realizado')
     return redirect(url_for('public.micuenta'))
 

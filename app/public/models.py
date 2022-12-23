@@ -28,3 +28,11 @@ class Lista(db.Model):
         self.cantidad_votos += 1
         db.session.commit()
 
+class Modal():
+    def __init__(self, nombre, imagen, cancelBtn, continueBtn, link):
+        self.nombre = nombre
+        self.imagen = imagen
+        self.cancelBtn = cancelBtn
+        self.continueBtn = continueBtn
+        self.link = link
+

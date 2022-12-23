@@ -1,27 +1,210 @@
 <head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/resultados_titulo.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/botones.css') }}">
     <style>
+
+        .volver {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 30px;
+        }
+
         .flex-container {
           display: flex;
           flex-wrap: wrap;
         }
 
+        .item {
+          width: 300px;
+
+        }
+
+        img {
+          width:300px;
+          height:300px;
+          opacity: 0.5;
+          transform: scale(1);
+          margin: 2px;
+        }
+
+        img:hover {
+          opacity: 1;
+          transform: scale(1.05);
+        }
+
+
+
+
+
+
+/* Set a style for all buttons */
+button {
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+button:hover {
+  opacity:1;
+}
+
+/* Float cancel and delete buttons and add an equal width */
+.cancelbtn, .continuebtn {
+  float: left;
+  width: 50%;
+}
+
+/* Add a color to the cancel button */
+.cancelbtn {
+  background-color: #ccc;
+  color: black;
+}
+
+/* Add a color to the delete button */
+.continuebtn {
+  background-color: #f44336;
+}
+
+    .modal {
+		display: none; /* ocultamos el modal inicialmente */
+		position: fixed; /* fijamos la posición del modal en la pantalla */
+		z-index: 1; /* ponemos el modal encima de otros elementos */
+		padding-top: 100px; /* espacio arriba del modal */
+		left: 0;
+		top: 0;
+		width: 100%; /* ancho del modal */
+		height: 100%; /* alto del modal */
+		overflow: auto; /* habilitamos el scroll si el contenido del modal es demasiado largo */
+		background-color: rgb(0,0,0); /* color de fondo */
+		background-color: rgba(0,0,0,0.4); /* transparencia del color de fondo */
+	  }
+
+	  /* estilos para el contenido del modal */
+	  .modal-content {
+		background-color: #fefefe;
+		margin: 5% auto 15% auto;
+		padding: 20px;
+		border: 1px solid #888;
+		width: 80%;
+	  }
+
+	  /* Style the horizontal ruler */
+	  hr {
+	    border: 1px solid #f1f1f1;
+		margin-bottom: 25px;
+	  }
+
+	  /* Clear floats */
+      .clearfix::after {
+        content: "";
+        clear: both;
+        display: table;
+      }
+
+	  /* estilo para el botón "cerrar" */
+	  .close {
+		color: #aaaaaa;
+		float: right;
+		font-size: 28px;
+		font-weight: bold;
+	  }
+
+	  .close:hover,
+	  .close:focus {
+		color: #000;
+		text-decoration: none;
+		cursor: pointer;
+	  }
+
+	  /* Clear floats */
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+
+
+
+
+
+
+
+
+
+
     </style>
 </head>
 {% extends "base.html" %}
 {% block content %}
-    <h1 class="bienvenido">Elije a quien votar</h1>
-
+    <h1 class="mi-titulo">Elije a quien votar</h1>
     <div calss="flex-container">
-    {% for l in listas %}
-        <a href = "/apfa/votar/{{ l.id }}" >
-            <img src="{{ url_for('static', filename = 'images/' + l.imagen) }}" alt="{{ l.num_lista }}" style="width:300px;height:300px;">
-        </a>
-    {% endfor %}
-
+<!--        {% set contador = 1 %}-->
+        {% for i in range(0, largo) %}
+            {% set cont = i * 3 %}
+                <img src="{{ url_for('static', filename = 'images/' + listas[i].imagen) }}" alt="{{ listas[i].num_lista }}" id="{{ datosModal.imagen[cont] }}" data-value="{{ datosModal.imagen[cont + 1] }}" class="imagen-lista" data-modal="{{ datosModal.imagen[cont + 2] }}">
+        {% endfor %}
     </div>
 
 
-    <div>
-        <a href = "{{ url_for('public.micuenta') }}" >Volver</a>
-    </div>
+        {% for d in d2 %}
+        <div class="modal" id="{{ d.nombre }}">
+          <div class="modal-content">
+                <h1>¿Quieres continuar?</h1>
+                <div class="clearfix">
+                  <button id="{{ d.cancelBtn }}" class="cancelbtn" data-modal="{{ d.nombre }}">Cancelar</button>
+                  <button id="{{ d.continueBtn }}" class="continuebtn" data-link="{{ d.link }}" data-modal="{{ d.nombre }}">Continuar</button>
+                </div>
+          </div>
+        </div>
+        {% endfor %}
+
+
+
+  <script>
+
+    // Obtengo las imagenes y hago que muestre el modal cuando se le hace click
+    const imagenes = document.querySelectorAll('.imagen-lista');
+    imagenes.forEach(imagen => {
+      imagen.addEventListener('click', event => {
+          const dataModal = imagen.getAttribute('data-modal');
+          const modal = document.getElementById(dataModal);
+          modal.style.display = "block";
+      });
+    });
+
+    // Obtengo los botones de cancelar para que cierren el modal
+    const cancelbtns = document.querySelectorAll('.cancelbtn');
+    cancelbtns.forEach(button => {
+      button.addEventListener('click', event => {
+        const dataModal = button.getAttribute('data-modal');
+        const modal = document.getElementById(dataModal);
+        modal.style.display = "none";
+      });
+    });
+
+    // Obtengo los botones de continuar para que vaya a la pagina de votar
+    const continuebtns = document.querySelectorAll('.continuebtn');
+    continuebtns.forEach(button => {
+      button.addEventListener('click', event => {
+        const link = button.getAttribute('data-link');
+        window.location.href = link;
+      });
+    });
+
+  </script>
+
+
+
+
+    <form class="volver">
+        <button class="botones" formaction="{{ url_for('public.index') }}">Volver</button>
+    </form>
+
 {% endblock %}
