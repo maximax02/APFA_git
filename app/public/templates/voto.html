@@ -1,145 +1,7 @@
 <head>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/resultados_titulo.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/botones.css') }}">
-    <style>
-
-        .volver {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          padding: 30px;
-        }
-
-        .flex-container {
-          display: flex;
-          flex-wrap: wrap;
-        }
-
-        .item {
-          width: 300px;
-
-        }
-
-        img {
-          width:300px;
-          height:300px;
-          opacity: 0.5;
-          transform: scale(1);
-          margin: 2px;
-        }
-
-        img:hover {
-          opacity: 1;
-          transform: scale(1.05);
-        }
-
-
-
-
-
-
-/* Set a style for all buttons */
-button {
-  background-color: #04AA6D;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  opacity: 0.9;
-}
-
-button:hover {
-  opacity:1;
-}
-
-/* Float cancel and delete buttons and add an equal width */
-.cancelbtn, .continuebtn {
-  float: left;
-  width: 50%;
-}
-
-/* Add a color to the cancel button */
-.cancelbtn {
-  background-color: #ccc;
-  color: black;
-}
-
-/* Add a color to the delete button */
-.continuebtn {
-  background-color: #f44336;
-}
-
-    .modal {
-		display: none; /* ocultamos el modal inicialmente */
-		position: fixed; /* fijamos la posición del modal en la pantalla */
-		z-index: 1; /* ponemos el modal encima de otros elementos */
-		padding-top: 100px; /* espacio arriba del modal */
-		left: 0;
-		top: 0;
-		width: 100%; /* ancho del modal */
-		height: 100%; /* alto del modal */
-		overflow: auto; /* habilitamos el scroll si el contenido del modal es demasiado largo */
-		background-color: rgb(0,0,0); /* color de fondo */
-		background-color: rgba(0,0,0,0.4); /* transparencia del color de fondo */
-	  }
-
-	  /* estilos para el contenido del modal */
-	  .modal-content {
-		background-color: #fefefe;
-		margin: 5% auto 15% auto;
-		padding: 20px;
-		border: 1px solid #888;
-		width: 80%;
-	  }
-
-	  /* Style the horizontal ruler */
-	  hr {
-	    border: 1px solid #f1f1f1;
-		margin-bottom: 25px;
-	  }
-
-	  /* Clear floats */
-      .clearfix::after {
-        content: "";
-        clear: both;
-        display: table;
-      }
-
-	  /* estilo para el botón "cerrar" */
-	  .close {
-		color: #aaaaaa;
-		float: right;
-		font-size: 28px;
-		font-weight: bold;
-	  }
-
-	  .close:hover,
-	  .close:focus {
-		color: #000;
-		text-decoration: none;
-		cursor: pointer;
-	  }
-
-	  /* Clear floats */
-.clearfix::after {
-  content: "";
-  clear: both;
-  display: table;
-}
-
-
-
-
-
-
-
-
-
-
-
-    </style>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/modals.css') }}">
 </head>
 {% extends "base.html" %}
 {% block content %}
@@ -164,9 +26,7 @@ button:hover {
         </div>
         {% endfor %}
 
-
-
-  <script>
+    <script>
 
     // Obtengo las imagenes y hago que muestre el modal cuando se le hace click
     const imagenes = document.querySelectorAll('.imagen-lista');
@@ -198,9 +58,6 @@ button:hover {
     });
 
   </script>
-
-
-
 
     <form class="volver">
         <button class="botones" formaction="{{ url_for('public.index') }}">Volver</button>
