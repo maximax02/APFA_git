@@ -28,12 +28,12 @@ with app.app_context():
     print(nros_socio)
 
     # Cargo un usuario
-    user1 = User(nombre="Maxi", email="coso@coso.com", numero_socio="614", habilitado=True)
+    user1 = User(nombre="Maxi", apellido="Piñeyro", email="coso@coso.com", numero_socio="614", habilitado=True)
     user1.set_password("123")
     db.session.add(user1)
 
     # Create 'admin@example.com' user with 'Admin' and 'Agent' roles
-    user = User(nombre="Admin", email="admin@example.com", is_admin=True, habilitado=True)
+    user = User(nombre="Admin", apellido="admin", email="admin@example.com", is_admin=True, habilitado=True)
     user.set_password("blabla")
     user.roles.append(Role(name='Admin'))
     user.roles.append(Role(name='Agent'))

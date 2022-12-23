@@ -35,9 +35,11 @@ def register():
     error = None
     if form.validate_on_submit():
         num_socio = form.num_socio.data
-        nombre_usuario = form.nombre_usuario.data
+        nombre = form.nombre.data
+        apellido = form.apellido.data
         email = form.email.data
         password = form.password.data
+
         # Compruebo que no hay ya un usuario con ese email y que ya no esté registrado
         usuario = User.get_by_email(email)
         usuario2 = User.get_by_num_socio(num_socio)
@@ -50,7 +52,7 @@ def register():
                 flash('Socio no encontrado')
             else:
                 # Creo el usuario y lo guardo
-                usuario = User(nombre=nombre_usuario, email=email, numero_socio=num_socio)
+                usuario = User(nombre=nombre, apellido=apellido, email=email, numero_socio=num_socio)
                 usuario.set_password(password)
                 usuario.save()
 

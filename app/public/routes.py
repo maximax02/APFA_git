@@ -42,12 +42,12 @@ def votar():
 @login_required
 def voto_realizado(id_lista):
     if current_user.ya_voto:
-        flash('Ya votaste, no te hagas el loco')
+        flash('Solo se permite un voto por persona')
         return redirect(url_for('public.micuenta'))
     lista = Lista.query.get(id_lista)
     print(f'VOTANDO A: {lista.num_lista}')
     lista.sumar_voto()
-    # current_user.confirmar_voto()
+    current_user.confirmar_voto()
     flash('Voto realizado')
     return redirect(url_for('public.micuenta'))
 
