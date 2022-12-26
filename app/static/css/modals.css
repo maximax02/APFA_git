@@ -1,40 +1,32 @@
+.volver {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+}
 
-        .volver {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          padding: 30px;
-        }
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+}
 
-        .flex-container {
-          display: flex;
-          flex-wrap: wrap;
-        }
+.item {
+  width: 300px;
+}
 
-        .item {
-          width: 300px;
+img {
+  width:300px;
+  height:300px;
+  opacity: 0.5;
+  transform: scale(1);
+  margin: 2px;
+}
 
-        }
+img:hover {
+  opacity: 1;
+  transform: scale(1.05);
+}
 
-        img {
-          width:300px;
-          height:300px;
-          opacity: 0.5;
-          transform: scale(1);
-          margin: 2px;
-        }
-
-        img:hover {
-          opacity: 1;
-          transform: scale(1.05);
-        }
-
-
-
-
-
-
-/* Set a style for all buttons */
 button {
   background-color: #04AA6D;
   color: white;

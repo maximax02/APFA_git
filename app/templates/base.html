@@ -4,10 +4,14 @@
         <meta charset="UTF-8">
         <title>Elecciones APFA</title>
         <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/modal-flash.css') }}">
         <style>
             body {
                 background-color: #ece0df;
             }
+
+
+
 		</style>
     </head>
     <body>
@@ -15,11 +19,36 @@
           {% if messages %}
           <ul>
               {% for message in messages %}
-              <li>{{ message }}</li>
+<!--              <li>{{ message }}</li>-->
+
+
+              <div class="modal" id="id01">
+                  <div class="modal-content">
+                      <span class="close">&times;</span>
+                      <h1>{{ message }}</h1>
+                  </div>
+              </div>
+
+              <script>
+                document.getElementById('id01').style.display='block'
+              </script>
+
+
               {% endfor %}
           </ul>
           {% endif %}
         {% endwith %}
+
+        <script>
+            var modal = document.getElementById('id01');
+            var closeModal = document.getElementsByClassName("close")[0];
+
+            closeModal.onclick = function() {
+              modal.style.display = "none";
+            }
+        </script>
+
+
         {% block content %}{% endblock %}
     </body>
 </html>

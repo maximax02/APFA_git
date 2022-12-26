@@ -47,7 +47,7 @@ def voto_realizado(id_lista):
     lista = Lista.query.get(id_lista)
     print(f'VOTANDO A: {lista.num_lista}')
     lista.sumar_voto()
-    current_user.confirmar_voto()
+    # current_user.confirmar_voto() #TODO: volver a la normalidad
     flash('Voto realizado')
     return redirect(url_for('public.micuenta'))
 
