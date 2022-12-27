@@ -39,6 +39,6 @@ def create_app(config_name='config.py'):
     from .restricted import restricted_bp
     app.register_blueprint(restricted_bp)
 
-    login_manager.login_view = 'auth.login'
+    # login_manager.login_view = 'auth.login'
 
     return app
