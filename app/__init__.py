@@ -16,7 +16,6 @@ def create_app(config_name='config.py'):
 
     # Lee la configuración desde el archivo config.py
     app.config.from_pyfile(config_name)
-
     login_manager.init_app(app)
     db.init_app(app)
     mail.init_app(app)
@@ -39,5 +38,7 @@ def create_app(config_name='config.py'):
 
     from .restricted import restricted_bp
     app.register_blueprint(restricted_bp)
+
+    login_manager.login_view = 'auth.login'
 
     return app

@@ -85,7 +85,6 @@ def confirm_email(token):
     return redirect(url_for('public.micuenta'))
 
 
-
 @auth_bp.route('/apfa/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
