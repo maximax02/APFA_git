@@ -12,11 +12,11 @@ SQLALCHEMY_TRACK_MODIFICATIONS = False
 # SQLALCHEMY_DATABASE_URI = 'sqlite:///apfa.db'
 SQLALCHEMY_DATABASE_URI = 'sqlite:///d:\\Users\\f108119\\Downloads\\Proyectos\\Python\\APFA\\app\\apfa.db'
 
-# USER_REGISTER_URL = '/register'
+USER_REGISTER_URL = '/apfa/register'
 USER_LOGIN_URL = '/apfa/login'
 USER_UNAUTHENTICATED_ENDPOINT = 'auth.login'
 USER_UNAUTHORIZED_ENDPOINT = 'auth.login'
-USER_ENABLE_EMAIL=False
+USER_ENABLE_EMAIL = False
 
 # configuracion mail
 MAIL_SERVER = 'smtp-mail.outlook.com'

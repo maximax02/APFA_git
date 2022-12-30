@@ -7,10 +7,11 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/form_login_title_subtitle.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/botones.css') }}">
 </head>
-{% extends "base.html" %}
-{% block content %}
 
-<div class="form">
+{% extends "base.html" %}
+{% block contenido %}
+<!--    {% block content %}-->
+    <div class="form">
     <div class="title">Bienvenido</div>
     <div class="subtitle">Ingrese por email o número de socio</div>
     <form action="" method="post" novalidate>
@@ -47,5 +48,5 @@
     <form>
         <button class="botones" formaction="{{ url_for('public.index') }}" style="width:100%;margin-top:15px;">Volver</button>
     </form>
-</div>
+  </div>
 {% endblock %}

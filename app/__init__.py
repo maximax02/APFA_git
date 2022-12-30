@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, url_for
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
 from flask_admin import Admin
@@ -24,7 +24,7 @@ def create_app(config_name='config.py'):
     admin.init_app(app, index_view=MyAdminIndexView())
 
     from .auth.models import User
-    user_manager = UserManager(app, db, User)
+    # user_manager = UserManager(app, db, User)
 
     # Registro de los BluePrints
     from .auth import auth_bp
@@ -39,6 +39,13 @@ def create_app(config_name='config.py'):
     from .restricted import restricted_bp
     app.register_blueprint(restricted_bp)
 
-    # login_manager.login_view = 'auth.login'
+
+    login_manager.login_view = 'auth.login'
+    user_manager = CustomUserManager(app, db, User)
 
     return app
+
+class CustomUserManager(UserManager):
+
+    def customize(self, app):
+        self.login_manager = login_manager

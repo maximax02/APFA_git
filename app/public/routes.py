@@ -2,10 +2,10 @@ from . import public_bp
 from flask import render_template, session, url_for, redirect, flash
 from flask_login import login_required, current_user
 
+from app import login_manager
 from app.public.models import Lista, Padron, Modal
 from app.auth.models import User
 from .forms.votar import VotarForm
-
 
 
 
