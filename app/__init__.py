@@ -39,9 +39,10 @@ def create_app(config_name='config.py'):
     from .restricted import restricted_bp
     app.register_blueprint(restricted_bp)
 
-
     login_manager.login_view = 'auth.login'
-    user_manager = CustomUserManager(app, db, User)
+
+    user_manager = UserManager(app, db, User)
+    user_manager.login_manager.login_message = 'Debe estar logueado para ver esta página'
 
     return app
 
@@ -49,3 +50,4 @@ class CustomUserManager(UserManager):
 
     def customize(self, app):
         self.login_manager = login_manager
+        self.login_manager.login_message = 'Debe estar logueado para ver esta página'
