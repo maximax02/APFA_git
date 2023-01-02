@@ -1,3 +1,4 @@
 - El mail lo envia a la carpeta SPAM
 - La lista número 0 está reservada para los votos Anulados
 - La lista número 1 está reservada para los votos en Blanco
+- El resultado "ganador_parcial" no contempla el caso de empate.

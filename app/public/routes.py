@@ -7,8 +7,6 @@ from app.public.models import Lista, Padron, Modal
 from app.auth.models import User
 from .forms.votar import VotarForm
 
-
-
 @public_bp.route('/')
 def index():
     # session.clear()
@@ -47,23 +45,9 @@ def voto_realizado(id_lista):
     lista = Lista.query.get(id_lista)
     print(f'VOTANDO A: {lista.num_lista}')
     lista.sumar_voto()
-    current_user.confirmar_voto()
+    # current_user.confirmar_voto()
     flash('Voto realizado')
     return redirect(url_for('public.micuenta'))
-
-# @public_bp.route('/apfa/votar', methods=['GET', 'POST'])
-# @login_required
-# def votar():
-#     listas = Lista.query.all()
-#     form = VotarForm()
-#     form.listas.choices = [(l.id, f'{l.num_lista} - {l.presidente}') for l in listas]
-#     if form.validate_on_submit():
-#         opcion = form.listas.data
-#         lista = Lista.query.get(opcion)
-#         lista.sumar_voto()
-#         current_user.confirmar_voto()
-#         return redirect(url_for('public.micuenta'))
-#     return render_template('voto.html', listas=listas, form=form)
 
 @public_bp.route('/apfa/resultados')
 def resultados():
@@ -76,7 +60,17 @@ def resultados():
     porcentaje_votos = '{:.2f}'.format( (users_ya_votaron*100)/len(users_habilitados) )
     porcentaje_habilitados = '{:.2f}'.format(((len(users)*100)/len(padron)))
 
+    mas_votos = listas[2]
+    for lista in listas:
+        if (lista.num_lista == 0) or (lista.num_lista == 1):
+            pass
+        elif lista.cantidad_votos > mas_votos.cantidad_votos:
+            mas_votos = lista
+
+    votos_ganador_parcial = mas_votos.cantidad_votos + listas[1].cantidad_votos
+    ganador_parcial = mas_votos.num_lista
+
     #TODO: Mostrar ganador parcial.
 
-    datos = {'porcentaje_habilitados': porcentaje_habilitados, 'porcentaje_votos': porcentaje_votos, 'padron': len(padron), 'users_habilitados': len(users_habilitados), 'listas': listas}
+    datos = {'porcentaje_habilitados': porcentaje_habilitados, 'porcentaje_votos': porcentaje_votos, 'padron': len(padron), 'users_habilitados': len(users_habilitados), 'listas': listas, 'ganador_parcial': ganador_parcial, 'votos_ganador_parcial': votos_ganador_parcial}
     return render_template('resultados.html', datos=datos)
