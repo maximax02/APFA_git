@@ -32,5 +32,3 @@ MAIL_DEFAULT_SENDER = 'pruebasdemaxi@outlook.com'
 
 # directorio para guardar imagenes
 POSTS_IMAGES_DIR = 'app\static\images'
-
-# LOGIN_MESSAGE = 'Debe estar logueado para ver esta página'

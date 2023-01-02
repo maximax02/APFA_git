@@ -1,2 +1,1 @@
-- Cuando accedo a una pagina de permisos admin sin estar logueado me lleva mal al login
-- Chequear formulario, mensajes de datarequired
+- Chequear mensajes de error del formulario en el login.

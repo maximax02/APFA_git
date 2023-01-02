@@ -3,10 +3,25 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/login_input.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/submit_buton.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/botones.css') }}">
+
+    <style>
+        .todo {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+        }
+
+        .right {
+            margin-left: auto;
+        }
+    </style>
+
 </head>
 {% extends "base.html" %}
-{% block content %}
+{% block contenido %}
 
+<div class="todo">
 <div class="form" style="height:670px;">
     <div class="title">Bienvenido</div>
     <div class="subtitle">Creemos tu cuenta</div>
@@ -17,7 +32,7 @@
             <div class="cut" style="width:65px"></div>
             <label for="num_socio" class="placeholder">Nº Socio</label>
         </div>
-        <div class="input-container ic2">
+        <div id="div-nombre" class="input-container ic2">
             {{ form.nombre }}
             <div class="cut" style="width:62px"></div>
             <label for="nombre" class="placeholder">Nombre</label>
@@ -49,6 +64,107 @@
         <button class="botones" formaction="{{ url_for('public.index') }}" style="width:100%;margin-top:15px;">Volver</button>
     </form>
 
-
 </div>
+    <div class="right" id="right"></div>
+</div>
+
+<script>
+    const right = document.getElementById('right');
+    {% for error in form.num_socio.errors %}
+        console.log("Creando num_socio_span")
+        const num_socio = document.getElementById('num_socio');
+        const num_socio_coords = num_socio.getBoundingClientRect();
+        const num_socioSpan = document.createElement('span');
+        num_socioSpan.style.cssText = `
+          position: absolute;
+          left: ${num_socio_coords.right + 50}px;
+          top: ${num_socio_coords.top + 10}px;
+          color: red;
+          font-size: 18px;
+        `;
+        num_socioSpan.innerHTML = '{{ error }}';
+        right.appendChild(num_socioSpan);
+    {% endfor %}
+
+    {% for error in form.nombre.errors %}
+        console.log("Creando nombre_span")
+        const nombre = document.getElementById('nombre');
+        const nombre_coords = nombre.getBoundingClientRect();
+        const nombreSpan = document.createElement('span');
+        nombreSpan.style.cssText = `
+          position: absolute;
+          left: ${nombre_coords.right + 50}px;
+          top: ${nombre_coords.top + 10}px;
+          color: red;
+          font-size: 18px;
+        `;
+        nombreSpan.innerHTML = '{{ error }}';
+        right.appendChild(nombreSpan);
+    {% endfor %}
+
+    {% for error in form.apellido.errors %}
+        console.log("Creando apellido_span")
+        const apellido = document.getElementById('apellido');
+        const apellido_coords = apellido.getBoundingClientRect();
+        const apellidoSpan = document.createElement('span');
+        apellidoSpan.style.cssText = `
+          position: absolute;
+          left: ${apellido_coords.right + 50}px;
+          top: ${apellido_coords.top + 10}px;
+          color: red;
+          font-size: 18px;
+        `;
+        apellidoSpan.innerHTML = '{{ error }}';
+        right.appendChild(apellidoSpan);
+    {% endfor %}
+
+    {% for error in form.email.errors %}
+        console.log("Creando email_span")
+        const email = document.getElementById('email');
+        const email_coords = email.getBoundingClientRect();
+        const emailSpan = document.createElement('span');
+        emailSpan.style.cssText = `
+          position: absolute;
+          left: ${email_coords.right + 50}px;
+          top: ${email_coords.top + 10}px;
+          color: red;
+          font-size: 18px;
+        `;
+        emailSpan.innerHTML = '{{ error }}';
+        right.appendChild(emailSpan);
+    {% endfor %}
+
+    {% for error in form.password.errors %}
+        console.log("Creando password_span")
+        const password = document.getElementById('password');
+        const password_coords = password.getBoundingClientRect();
+        const passwordSpan = document.createElement('span');
+        passwordSpan.style.cssText = `
+          position: absolute;
+          left: ${password_coords.right + 50}px;
+          top: ${password_coords.top + 10}px;
+          color: red;
+          font-size: 18px;
+        `;
+        passwordSpan.innerHTML = '{{ error }}';
+        right.appendChild(passwordSpan);
+    {% endfor %}
+
+    {% for error in form.password2.errors %}
+        console.log("Creando password2_span")
+        const password2 = document.getElementById('password2');
+        const password2_coords = password2.getBoundingClientRect();
+        const password2Span = document.createElement('span');
+        password2Span.style.cssText = `
+          position: absolute;
+          left: ${password2_coords.right + 50}px;
+          top: ${password2_coords.top + 10}px;
+          color: red;
+          font-size: 18px;
+        `;
+        password2Span.innerHTML = '{{ error }}';
+        right.appendChild(password2Span);
+    {% endfor %}
+</script>
+
 {% endblock %}
