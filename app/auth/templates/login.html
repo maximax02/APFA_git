@@ -6,11 +6,25 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/checkbox_rememberme.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/form_login_title_subtitle.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/botones.css') }}">
+
+    <style>
+        .todo {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+        }
+
+        .right {
+            margin-left: auto;
+        }
+    </style>
 </head>
 
 {% extends "base.html" %}
 {% block contenido %}
 <!--    {% block content %}-->
+    <div class="todo">
     <div class="form">
     <div class="title">Bienvenido</div>
     <div class="subtitle">Ingrese por email o número de socio</div>
@@ -49,5 +63,31 @@
         <button class="botones" formaction="{{ url_for('public.index') }}" style="width:100%;margin-top:15px;">Volver</button>
     </form>
   </div>
+       <div class="right" id="right"></div>
+  </div>
 <!--{% endblock %}-->
+
+<script>
+    const right = document.getElementById('right');
+
+    {% for error in form.password.errors %}
+        console.log("Creando password_span")
+        const password = document.getElementById('password');
+        const password_coords = password.getBoundingClientRect();
+        const passwordSpan = document.createElement('span');
+        passwordSpan.style.cssText = `
+          position: absolute;
+          left: ${password_coords.right + 50}px;
+          top: ${password_coords.top + 10}px;
+          color: red;
+          font-size: 18px;
+        `;
+        passwordSpan.innerHTML = '{{ error }}';
+        right.appendChild(passwordSpan);
+    {% endfor %}
+</script>
+
+
+
+
 {% endblock %}
