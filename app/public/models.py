@@ -14,7 +14,7 @@ class Lista(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     presidente = db.Column(db.String(80), nullable=False)
     vice = db.Column(db.String(80), nullable=False)
-    num_lista = db.Column(db.Integer, nullable=False)
+    num_lista = db.Column(db.Integer, nullable=False, unique=True)
     cantidad_votos = db.Column(db.Integer, default='0')
 
     # TODO: Poner imagen
@@ -27,6 +27,10 @@ class Lista(db.Model):
     def sumar_voto(self):
         self.cantidad_votos += 1
         db.session.commit()
+
+    @staticmethod
+    def get_by_num_lista(num_lista):
+        return Lista.query.filter_by(num_lista=num_lista).first()
 
 class Modal():
     def __init__(self, nombre, cancelBtn, continueBtn, link):

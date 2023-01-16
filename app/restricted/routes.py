@@ -57,25 +57,28 @@ def agregar_lista():
     form = AgregarListaForm()
     if form.validate_on_submit():
         num_lista = int(form.num_lista.data)
-        presidente = form.presidente.data
-        vicepresidente = form.vicepresidente.data
-        file = form.imagen.data
-        print(f'FILE_TYPE: {type(file)}')
-        image_name = None
-        if file:
-            image_name = secure_filename(file.filename)
-            images_dir = current_app.config['POSTS_IMAGES_DIR']
-            os.makedirs(images_dir, exist_ok=True)
-            file_path = os.path.join(images_dir, image_name)
-            file.save(file_path)
+        if not Lista.get_by_num_lista(num_lista):
+            presidente = form.presidente.data
+            vicepresidente = form.vicepresidente.data
+            file = form.imagen.data
+            print(f'FILE_TYPE: {type(file)}')
+            image_name = None
+            if file:
+                image_name = secure_filename(file.filename)
+                images_dir = current_app.config['POSTS_IMAGES_DIR']
+                os.makedirs(images_dir, exist_ok=True)
+                file_path = os.path.join(images_dir, image_name)
+                file.save(file_path)
 
-            # image = Image.open(file_path)
-            # print(f'ORIGINAL SIZE: {image.size}')
-            # image.thumbnail((128, 128))
-            # image.save(file_path)
+                # image = Image.open(file_path)
+                # print(f'ORIGINAL SIZE: {image.size}')
+                # image.thumbnail((128, 128))
+                # image.save(file_path)
 
-        lista = Lista(presidente=presidente, vice=vicepresidente, num_lista=num_lista, imagen=image_name)
-        lista.save()
-        flash('Lista agregada')
-        return redirect(url_for('restricted.agregar_lista'))
+            lista = Lista(presidente=presidente, vice=vicepresidente, num_lista=num_lista, imagen=image_name)
+            lista.save()
+            flash('Lista agregada')
+            return redirect(url_for('restricted.agregar_lista'))
+        else:
+            flash('Número de lista ya en sistema')
     return render_template('agregar_lista.html', form=form)

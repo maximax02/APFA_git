@@ -16,23 +16,32 @@
                 <tr>
                     <td><label for="num_lista">Número de lista: </label></td>
                     <td>{{ form.num_lista }}</td>
+                    <td>{% for error in form.num_lista.errors %}
+                        <span style="color: red;">{{ error }}</span>
+                        {% endfor %}
                 </tr>
                 <tr>
                     <td><label for="presidente">Presidente: </label></td>
                     <td>{{ form.presidente }}</td>
+                    <td>{% for error in form.presidente.errors %}
+                        <span style="color: red;">{{ error }}</span>
+                    {% endfor %}</td>
                 </tr>
                 <tr>
                     <td><label for="vicepresidente">Vice-Presidente: </label></td>
                     <td>{{ form.vicepresidente }}</td>
+                    <td>{% for error in form.vicepresidente.errors %}
+                        <span style="color: red;">{{ error }}</span>
+                    {% endfor %}</td>
                 </tr>
                 <tr>
                     <td><label for="imagen">Imagen: </label></td>
                     <td>{{ form.imagen }}</td>
+                    <td>{% for error in form.imagen.errors %}
+                        <span style="color: red;">{{ error }}</span>
+                    {% endfor %}</td>
                 </tr>
         </table>
-
-
-
 
             {{ form.submit() }}
 

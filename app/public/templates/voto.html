@@ -17,7 +17,7 @@
         {% for modal in datosModal %}
         <div class="modal" id="{{ modal.nombre }}">
           <div class="modal-content">
-                <h1>¿Quieres continuar?</h1>
+                <h1>¿Seguro quieres votar ésta lista?</h1>
                 <div class="clearfix">
                   <button id="{{ modal.cancelBtn }}" class="cancelbtn" data-modal="{{ modal.nombre }}">Cancelar</button>
                   <button id="{{ modal.continueBtn }}" class="continuebtn" data-link="{{ modal.link }}" data-modal="{{ modal.nombre }}">Continuar</button>
